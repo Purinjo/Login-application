@@ -1,43 +1,69 @@
+// Create a registration system
 var objPeople = [
-    {
-        username: "djole"
-        password: "password25"
-    },
-    {
-        username: "pura"
-        password: "password88"
-    },
-    {
-        username: "neca"
-        password: "password3"
-    }
+	{
+		username: 'djole',
+		password: 'password25'
+	},
+	{
+		username: 'pura',
+		password: 'password88'
+	},
+	{
+		username: 'neca',
+		password: 'password3'
+	}
 ]
 
-//login functionality
+// login functionality
 function login() {
-//retrive data input from form
-var username = document.getElementById("username").value
-var password = doument.getElementById("password").value
+	// retreive data from username and store in username variable
+	var username = document.getElementById('username').value
+	// retreive data from password and store in password variable
+	var password = document.getElementById('password').value
 
-//loop through all the user objects and confirm the username and passwords are corect
-for(i = 0; i < objPeople.length; i++) {
-    if username = objPeople[i].username && password == objPeople[i].password {
-        console.log(username + "is logged in!!!")
-        return
-    }
+	// loop through all the user pbjects and confrim if the username and password are correct
+	for(var i = 0; i < objPeople.length; i++) {
+		// check to 
+		if(username == objPeople[i].username && password == objPeople[i].password) {
+			console.log(username + ' is logged in!!!')
+			// stop the statement if result is found true - this was a return in the video, break is best practice here
+			break
+		} else {
+			// error if username and password don't match
+			console.log('incorrect username or password')
+		}
+	}
 }
 
-//error if username and password do not match
-console.log("incorect username of password")
-}
-
+// register functionality
 function registerUser() {
-    var registerUser = document.getElementById("newUser").value
-    var registerPassword = doument.getElementById("newPassword").value
-    var newUser = {
-        username: registerUser,
-        password: registerPassword
-    }
-    objPeople.push(registerUser, registerPassword)
-    console.log(objPeople)
+	// store new users username
+	var registerUsername = document.getElementById('newUsername').value
+	// store new users password
+	var registerPassword = document.getElementById('newPassword').value
+	// store new user data in an object
+	var newUser = {
+		username: registerUsername,
+		password: registerPassword
+	}
+	// loop throught people array to see if the username is taken, or password to short
+	for(var i = 0; i < objPeople.length; i++) {
+		// check if new username is equal to any already created usernames
+		if(registerUser == objPeople[i].username) {
+			// alert user that the username is take
+			alert('That username is alreat in user, please choose another')
+			// stop the statement if result is found true
+			break
+		// check if new password is 8 characters or more
+		} else if (registerPassword.length < 8) {
+			// alert user that the password is to short
+			alert('That is to short, include 8 or more characters')
+			// stop the statement if result is found true
+			break
+		}
+	}
+	// push new object to the people array
+	objPeople.push(newUser)
+	// console the updated people array
+	console.log(objPeople)
 }
